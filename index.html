@@ -4,126 +4,105 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Routing and Navigation for React.js Applications</title>
-    <meta name="description" content="Routing and navigation solution for single-page web applications">
+    <meta name="description" content="Routing and navigation solution for React.js applications">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/react-routing/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700">
     <link rel="stylesheet" href="/react-routing/css/main.min.css">
   </head>
   <body>
-    <!--[if lt IE 8]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div class="wrapper">
-      <div class="header header--full">
-        <div class="container">
-          <h1 class="header-title">React Routing</h1>
-          <p class="header-desc">Routing and navigation solution for React.js applications</p>
-        </div>
-      </div>
+    <div class="header">
       <div class="container">
-        <ol class="nav">
-          <li><a href="/react-routing/">Home</a></li>
-          <li><a href="/react-routing/getting-started">Getting Started</a></li>
-          <li><a href="#how-to-install">How to Install</a></li>
-          <li><a href="#basic-routing">Basic Routing</a></li>
-          <li><a href="#async-routes">Async Routes</a></li>
-          <li>Nested Routes</li>
-          <li>Integration with Flux</li>
-          <li>Server-side Rendering</li>
-        </ol>
-        <div class="content">
-          <a class="github" target="_blank" href="https://github.com/kriasoft/react-routing/tree/master/docs/index.md">Edit on GitHub</a>
-          <h2 id="how-to-install">How to Install</h2>
-<pre><code class="lang-sh">$ npm <span class="hljs-operator"><span class="hljs-keyword">install</span> react-routing <span class="hljs-comment">--save</span></span>
+        <a class="logo" href="/react-routing/">
+          React <img class="logo-img" src="/react-routing/img/tour.svg" alt="React Routing" /> Routing
+        </a>
+        <span class="author">
+          made with &nbsp;♥&nbsp; by&nbsp; <a href="https://twitter.com/koistya" rel="author" title="Konstantin Tarkus on Twitter">@koistya</a>
+        </span>
+        
+        <div class="hero">
+          <img class="hero-img" src="/react-routing/img/developer.png" alt="React Routing" />
+          <h1 class="hero-title">Routing and navigation solution<br> for React.js applications</h1>
+          <!--<p class="hero-desc">Routing and navigation solution for React.js applications</p>-->
+          <ul class="stats">
+            <li class="stats-item stats-stars"><span>7</span> stars</li>
+            <li class="stats-item stats-subscribers"><span>3</span> watchers</li>
+            <li class="stats-item stats-forks"><span>2</span> forks</li>
+            <li class="stats-item stats-open-issues"><span>1</span> open issues</li>
+          </ul>
+          <a class="hero-btn" href="getting-started">Learn more</a>
+          <a class="hero-btn hero-btn--muted" href="https://github.com/kriasoft/react-routing">
+            <img class="hero-btn-icon" src="/react-routing/img/github-icon.svg" alt="GitHub" />
+            View on GitHub
+          </a>
+        </div>
+        
+      </div>
+    </div>
+    
+    <div class="version">
+      <div class="container">
+        <span>2015-07-10 &nbsp; | &nbsp; v0.0.2</span>
+        <span class="pull-right">Join <a href="https://gitter.im/kriasoft/react-routing">#react-routing</a> chatroom on Gitter to stay up to date.</span>
+      </div>
+    </div>
+    
+    <div class="content">
+      <div class="content-left">
+        <a class="edit-btn" target="_blank" href="https://github.com/kriasoft/react-routing/edit/master/docs/index.md" title="Edit on GitHub">
+          <svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" width="612" height="612" viewBox="0 0 612 612"><path d="M545.062 286.875c-15.854 0-28.688 12.852-28.688 28.688v239.062h-459v-459h239.062c15.854 0 28.688-12.852 28.688-28.688S312.292 38.25 296.438 38.25H38.25C17.136 38.25 0 55.367 0 76.5v497.25C0 594.883 17.136 612 38.25 612H535.5c21.114 0 38.25-17.117 38.25-38.25V315.562c0-15.835-12.833-28.687-28.688-28.687zM605.325 88.95L523.03 6.655C518.556 2.18 512.684 0 506.812 0s-11.743 2.18-16.218 6.675l-318.47 318.45v114.75h114.75l318.45-318.45c4.494-4.495 6.675-10.366 6.675-16.237 0-5.89-2.18-11.743-6.675-16.238zM267.75 382.5H229.5v-38.25L506.812 66.938l38.25 38.25L267.75 382.5z"/></svg>
+        </a>
+<h2>How to Install</h2>
+<pre><code class="language-sh">$ npm install react-routing --save
 </code></pre>
-<h2 id="basic-routing">Basic Routing</h2>
-<pre><code class="lang-js"><span class="hljs-comment">// router.js</span>
-<span class="hljs-keyword">import</span> { Router } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-routing'</span>;
+<h2>Basic Routing</h2>
+<p>Put your routes in a separate file (e.g. <code>router.js</code>)</p>
+<pre><code class="language-js"><span class="hljs-keyword">import</span> { Router } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-routing'</span>;
 <span class="hljs-keyword">import</span> Layout <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Layout'</span>;
 <span class="hljs-keyword">import</span> HomePage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/HomePage'</span>;
 <span class="hljs-keyword">import</span> AboutPage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/AboutPage'</span>;
 
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
+<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router(on =&gt; {
 
-router.use(<span class="hljs-string">'/'</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Layout</span> /&gt;</span>)</span>;
-router.route(<span class="hljs-string">'/'</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">HomePage</span> /&gt;</span>)</span>;
-router.route(<span class="hljs-string">'/about'</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">AboutPage</span> /&gt;</span>)</span>;
+  on(<span class="hljs-string">'*'</span>, <span class="hljs-keyword">async</span> (state, next) =&gt; {         <span class="hljs-comment">// Matches all URLs</span>
+    <span class="hljs-keyword">const</span> component = <span class="hljs-keyword">await</span> next();        <span class="hljs-comment">// and wraps child components</span>
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Layout</span>&gt;</span>{component}<span class="hljs-tag">&lt;/<span class="hljs-title">Layout</span>/&gt;</span>;</span>  <span class="hljs-comment">// into a common layout component</span>
+  });
+  
+  on(<span class="hljs-string">'/'</span>, () =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">HomePage</span> /&gt;</span>)</span>;
+  on(<span class="hljs-string">'/about'</span>, () =&gt; <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">AboutPage</span> /&gt;</span>)</span>;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router;
-</code></pre>
-<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
-<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'./router.js'</span>;
-<span class="hljs-keyword">import</span> NotFoundPage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/NotFoundPage'</span>;
-<span class="hljs-keyword">import</span> ErrorPage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/ErrorPage'</span>;
-
-<span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>);
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">window</span>.location.path.substr(<span class="hljs-number">1</span>) || <span class="hljs-string">'/'</span>;
-    <span class="hljs-keyword">const</span> action = router.match(path);
-    <span class="hljs-keyword">const</span> component = action ? <span class="hljs-keyword">await</span> action() || <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">NotFoundPage</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">{path}</span> /&gt;</span>;</span>
-    React.render(component, container);
-  } <span class="hljs-keyword">catch</span> (err) {
-    React.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ErrorPage</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">{path}</span> <span class="hljs-attribute">error</span>=<span class="hljs-value">{err}</span> /&gt;</span>, container);
-  }
-}
-
-window.addEventListener('hashchange', () =&gt; render());
-render();</span>
-</code></pre>
-<h2 id="async-routes">Async Routes</h2>
-<pre><code class="lang-js"><span class="hljs-comment">// router.js</span>
-<span class="hljs-keyword">import</span> { Router } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-routing'</span>;
-<span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'./core/http'</span>;
-<span class="hljs-keyword">import</span> Layout <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/Layout'</span>;
-<span class="hljs-keyword">import</span> ProductListing <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/ProductListing'</span>;
-<span class="hljs-keyword">import</span> ProductInfo <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/ProductInfo'</span>;
-
-<span class="hljs-keyword">const</span> router = <span class="hljs-keyword">new</span> Router();
-
-router.use(<span class="hljs-string">'/'</span>, <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Layout</span> /&gt;</span>)</span>;
-router.route(<span class="hljs-string">'/products'</span>, <span class="hljs-keyword">async</span> () =&gt; {
-  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> http.get(<span class="hljs-string">'/api/products'</span>);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ProductListing</span> {<span class="hljs-attribute">...data</span>} /&gt;</span>;</span>
-});
-router.route(<span class="hljs-string">'/about'</span>, <span class="hljs-keyword">async</span> (ctx, id) =&gt; {
-  <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> http.get(<span class="hljs-string">`/api/products/<span class="hljs-subst">${id}</span>`</span>);
-  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ProductInfo</span> {<span class="hljs-attribute">...data</span>} /&gt;</span>;</span>
 });
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router;
 </code></pre>
-<pre><code class="lang-js"><span class="hljs-comment">// app.js</span>
-<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">'./router.js'</span>;
-<span class="hljs-keyword">import</span> NotFoundPage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/NotFoundPage'</span>;
-<span class="hljs-keyword">import</span> ErrorPage <span class="hljs-keyword">from</span> <span class="hljs-string">'./components/ErrorPage'</span>;
+<p>Reference the router from your application code and dispatch a URL change event:</p>
+<pre><code class="language-js">import React from 'react;
+import router from './router.js';
+import NotFoundPage from './components/NotFoundPage';
+import ErrorPage from './components/ErrorPage';
 
-<span class="hljs-keyword">const</span> container = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>);
-
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
-  <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">window</span>.location.path.substr(<span class="hljs-number">1</span>) || <span class="hljs-string">'/'</span>;
-    <span class="hljs-keyword">const</span> action = router.match(path);
-    <span class="hljs-keyword">const</span> component = action ? <span class="hljs-keyword">await</span> action() || <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">NotFoundPage</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">{path}</span> /&gt;</span>;</span>
-    React.render(component, container);
-  } <span class="hljs-keyword">catch</span> (err) {
-    React.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">ErrorPage</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">{path}</span> <span class="hljs-attribute">error</span>=<span class="hljs-value">{err}</span> /&gt;</span>, container);
+async function render() {
+  try {
+    const path = window.location.path.substr(1) || '/';
+    const component = await router.dispatch(path) || &lt;NotFoundPage path={path} /&gt;;
+    React.render(component, document.body);
+  } catch (err) {
+    React.render(&lt;ErrorPage error={err} /&gt;, document.body);
   }
 }
 
 window.addEventListener('hashchange', () =&gt; render());
-render();</span>
+render();
 </code></pre>
 
-        </div>
+        
       </div>
     </div>
-    <a href="https://github.com/kriasoft/react-routing">
-      <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png">
-    </a>
     <div class="footer">
-      <div class="container">
-        <p class="copy">&copy; 2015 Kriasoft</p>
+      <div class="container clearfix">
+        <p class="footer-left">Licensed under the MIT license</p>
+        <p class="footer-right">&copy; 2015 <a href="http://www.kriasoft.com">Kriasoft</a></p>
       </div>
     </div>
     <script src="/react-routing/js/main.min.js"></script>
@@ -134,6 +113,10 @@ render();</span>
       e.src='https://www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-33821884-1','auto');ga('send','pageview');
+      window.disqus_shortname = 'kriasoft';
+      window.disqus_identifier = 'react-routing/';
+      window.disqus_title = 'Routing and Navigation for React.js Applications';
+      window.disqus_url = 'http://www.kriasoft.com/react-routing/';
     </script>
   </body>
 </html>
