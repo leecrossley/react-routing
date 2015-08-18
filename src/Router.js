@@ -75,7 +75,7 @@ class Router {
     if (this.events.error) {
       try {
         state.statusCode = 404;
-        result = await this.events.error(state, new Error(`Cannot found a route matching '${state.path}'.`));
+        result = await this.events.error(state, new Error(`Cannot find a route matching '${state.path}'.`));
         cb(state, result);
       } catch (error) {
         state.statusCode = 500;
